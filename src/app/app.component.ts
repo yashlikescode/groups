@@ -22,12 +22,24 @@ export class AppComponent {
       groupName: 'Group 3',
       templates: ['Template 3A', 'Template 3B', 'Template 3C'],
     },
+    {
+      groupName: 'Group 4',
+      templates: ['Template 4A', 'Template 4B', 'Template 4C'],
+    },
+    {
+      groupName: 'Group 5',
+      templates: ['Template 5A', 'Template 5B', 'Template 5C'],
+    },
+    {
+      groupName: 'Group 6',
+      templates: ['Template 6A', 'Template 6B', 'Template 6C'],
+    },
   ];
 
   activeGroup: string = '';
 
   selectedTemplates: { [key: string]: boolean } = {};
-  selectedGroup:string = '';
+  selectedGroup: string = '';
 
   toggable: boolean = true;
   disableToggle() {
@@ -43,13 +55,15 @@ export class AppComponent {
     }
   }
   groupClicked(selectedGroup: any, event: any) {
+    if (event.target.checked) {
+      this.selectedGroup = selectedGroup.groupName;
+    } else {
+      this.selectedGroup = '';
+    }
     this.jsonData.forEach((group) => {
       group.templates.forEach((template) => {
         if (selectedGroup.groupName === group.groupName) {
           this.selectedTemplates[template] = event.target.checked;
-          if(event.target.checked){
-            this.selectedGroup = selectedGroup.groupName;
-          }
         } else {
           this.selectedTemplates[template] = false;
         }
@@ -67,7 +81,12 @@ export class AppComponent {
   isChecked(template: string): boolean {
     return this.selectedTemplates[template] || false;
   }
-  isCheckedGroup(group:any):boolean{
+  isCheckedGroup(group: any): boolean {
     return group.groupName === this.selectedGroup;
+  }
+  getTrueTemplates(): string[] {
+    return Object.keys(this.selectedTemplates).filter(
+      (key) => this.selectedTemplates[key]
+    );
   }
 }
