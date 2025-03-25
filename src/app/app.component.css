@@ -6,3 +6,15 @@ label {
 div {
   margin-bottom: 10px;
 }
+.template-box,.group-box{
+  border-radius:0.2cm;
+  padding:0.5cm 0 0.5cm 0.2cm;
+}
+.template-box{
+  margin-left:0.5cm;
+  border:solid 1px black;
+}
+.group-box{
+  color:white;
+  background-color: blue;
+}

@@ -1,14 +1,14 @@
 <div *ngFor="let group of jsonData">
-  <div>
-    <label>
-      <input type="checkbox" (change)="toggleGroup(group)" [checked]="isGroupActive(group.groupName)" />
+  <div class="group-box" (click)="toggleGroup(group)">
+    <input type="checkbox" [checked]="isCheckedGroup(group)" (change)="groupClicked(group, $event)" (mouseover)="disableToggle()" (mouseout)="enableToggle()" /> 
+    <label style="display: inline;">
       {{ group.groupName }}
     </label>
   </div>
 
   <div *ngIf="isGroupActive(group.groupName)">
     <div *ngFor="let template of group.templates">
-      <label>
+      <label class="template-box">
         <input type="checkbox" [checked]="isChecked(template)" (change)="onTemplateChange(template, $event)" />
         {{ template }}
       </label>
