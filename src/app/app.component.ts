@@ -70,7 +70,7 @@ export class AppComponent {
       });
     });
   }
-  isGroupActive(groupName: string): boolean {
+  isGroupActive(groupName: string): boolean{
     return this.activeGroup === groupName;
   }
 
