@@ -70,12 +70,31 @@ export class AppComponent {
       });
     });
   }
-  isGroupActive(groupName: string): boolean{
+  isGroupActive(groupName: string): boolean {
     return this.activeGroup === groupName;
   }
-
-  onTemplateChange(template: string, event: any) {
+  onTemplateChange(ParentGroup: any, template: string, event: any) {
     this.selectedTemplates[template] = event.target.checked;
+
+    this.selectedGroup = '';
+
+    this.jsonData.forEach((group) => {
+      if (group.groupName != ParentGroup.groupName) {
+        group.templates.forEach((template) => {
+          this.selectedTemplates[template] = false;
+        });
+      }
+    });
+    this.jsonData.forEach((group) => {
+      if (group.groupName === ParentGroup.groupName) {
+        this.selectedGroup = group.groupName;
+        group.templates.forEach((template) => {
+          if(!this.selectedTemplates[template]){
+            this.selectedGroup='';
+          }
+        });
+      }
+    });
   }
 
   isChecked(template: string): boolean {

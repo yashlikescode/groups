@@ -9,11 +9,11 @@
   <div *ngIf="isGroupActive(group.groupName)">
     <div *ngFor="let template of group.templates">
       <label class="template-box">
-        <input type="checkbox" [checked]="isChecked(template)" (change)="onTemplateChange(template, $event)" />
+        <input type="checkbox" [checked]="isChecked(template)" (change)="onTemplateChange(group,template, $event)" />
         {{ template }}
       </label>
     </div>
   </div>
 </div>
 
-<div class="result"><span *ngFor="let templates of  getTrueTemplates()" class="template-name">{{templates}}</span> are selected from group: {{selectedGroup}}</div>
+<div class="result"><span *ngFor="let templates of  getTrueTemplates()" class="template-name">{{templates}}</span> are selected.</div>
