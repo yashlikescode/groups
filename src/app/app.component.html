@@ -11,6 +11,9 @@
       <label class="template-box">
         <input type="checkbox" [checked]="isChecked(template)" (change)="onTemplateChange(group,template, $event)" />
         {{ template }}
+        <div style="padding-top:5px;" *ngFor="let sheetname of getSheetNamesByModuleName(template)">
+          <span style="color:blue;display: inline;">{{sheetname}}</span>
+        </div>
       </label>
     </div>
   </div>
